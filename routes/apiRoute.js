@@ -9,7 +9,10 @@ app.get("/api/workouts", (req, res) => // Calling from the api.js in the public 
 {
     db.workout.find({},(workouts));
     console.log(workouts);
+}).catch(err => {
+    res.status(400).json(err);
 });
+};
 
 app.put("/api/workouts/:id", (req, res) => // Calling from the api.js in the public folder, but want to get the id of the workout(s) which the user is calling.
 {
@@ -33,7 +36,10 @@ console.log(workoutData);
     {
     res.json(updateDbCollecition); // trying to see if this will work.
     console.log(updateDbCollecition);
+}).catch(err => {
+    res.status(400).json(err);
 });
+
 });
 
 app.post("/api/workouts", (req, res) => 
@@ -47,8 +53,9 @@ app.post("/api/workouts", (req, res) =>
         {
         res.json(updateDbCollecition);
         console.log(updateDbCollecition);
-    });
-};
+}).catch(err => {
+    res.status(400).json(err);
+});
 
 // );
 // }
