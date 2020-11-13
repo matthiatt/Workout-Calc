@@ -1,13 +1,15 @@
 // https://www.programcreek.com/java-api-examples/?class=com.mongodb.client.MongoCollection&method=findOneAndUpdate -- Used this to learn more about the findOneAndUpdate method.
 
-const db = require("mongojs");
+const db = require("mongojs"); // required modules
 
-app.get("/api/workouts", (req, res) => {
+app.get("/api/workouts", (req, res) => // Calling from the api.js in the public folder.
+{
     db.workout.find({},(workouts));
     console.log(workouts);
 });
 
-app.put("/api/workouts/:id", (req, res) => {
+app.put("/api/workouts/:id", (req, res) => // Calling from the api.js in the public folder, but want to get the id of the workout(s) which the user is calling.
+{
 var webUrlInfo = req.params;
 var workoutData = req.body;
 console.log(webUrlInfo);
@@ -24,16 +26,19 @@ console.log(workoutData);
         "sets": workoutData.sets
       }  // I added string to the start of every data line to tell the code that not everything is data, just the variable I created and what its refering to.
     ]
-}}).then(updateDbCollecition => {
-    res.json(updateDbCollecition);
+}}).then(updateDbCollecition => 
+    {
+    res.json(updateDbCollecition); // trying to see if this will work.
     console.log(updateDbCollecition);
 });
 });
 
-app.post("/api/workouts", (req, res) => {
-    var workoutData = req.body;
-
+app.post("/api/workouts", (req, res) => 
+{
     db.workout.create({
-        
-    })
-})
+        day: new Date().setDate(new Date().getDate()) // Copy and pasted from the seed file.
+    }).then(updateDbCollecition  => {
+        res.json(updateDbCollecition);
+        console.log(updateDbCollecition);
+    });
+});
