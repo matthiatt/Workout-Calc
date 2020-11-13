@@ -41,12 +41,14 @@ app.post("/api/workouts", (req, res) =>
     var workoutData = req.body;
     workout.create(workoutData);
     console.log(workoutData);
-    db.workout.create({
-        day: new Date().setDate(new Date().getDate()) // Copy and pasted from the seed file.
+    // db.workout.create({
+    //     day: new Date().setDate(new Date().getDate()) // Copy and pasted from the seed file.
     }).then(updateDbCollecition  => 
         {
         res.json(updateDbCollecition);
         console.log(updateDbCollecition);
     });
-});
-}
+};
+
+// );
+// }
