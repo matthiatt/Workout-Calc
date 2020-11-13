@@ -1,7 +1,10 @@
 // https://www.programcreek.com/java-api-examples/?class=com.mongodb.client.MongoCollection&method=findOneAndUpdate -- Used this to learn more about the findOneAndUpdate method.
 
 const db = require("mongojs"); // required modules
+const express = require("express");
+const app = express();
 
+module.exports = function(app) {
 app.get("/api/workouts", (req, res) => // Calling from the api.js in the public folder.
 {
     db.workout.find({},(workouts));
@@ -35,6 +38,9 @@ console.log(workoutData);
 
 app.post("/api/workouts", (req, res) => 
 {
+    var workoutData = req.body;
+    workout.create(workoutData);
+    console.log(workoutData);
     db.workout.create({
         day: new Date().setDate(new Date().getDate()) // Copy and pasted from the seed file.
     }).then(updateDbCollecition  => 
@@ -43,3 +49,4 @@ app.post("/api/workouts", (req, res) =>
         console.log(updateDbCollecition);
     });
 });
+}

@@ -1,26 +1,21 @@
 // Connections needed
 const express = require("express");
 const mongoose = require("mongoose");
-const morgan = require("morgan");
+// const morgan = require("morgan");
 // const mongojs = require("mongojs");
 
 const PORT = process.env.PORT || 3000;
 
-// const db = mongojs(databaseUrl, collections);
-
-db.on("error", error => 
-{
-  console.log("Database Error:", error);
-});
+const db = require("mongojs");
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(morgan);
+// app.use(morgan);
 app.use(express.static("public"));
 
-require("./routes/apiRoute")(app);
+app.use(require("./routes/apiRoute"));
 require("./routes/htmlRoutes")(app);
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", 
@@ -33,3 +28,5 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout",
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
 });
+
+// I HATE HEROKU
