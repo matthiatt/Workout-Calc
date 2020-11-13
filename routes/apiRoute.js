@@ -1,9 +1,9 @@
 // https://www.programcreek.com/java-api-examples/?class=com.mongodb.client.MongoCollection&method=findOneAndUpdate -- Used this to learn more about the findOneAndUpdate method.
 
-const db = require("mongojs"); // required modules
-const express = require("express");
-const app = express();
-
+// const db = require("mongojs"); // required modules
+// const express = require("express");
+// const app = express();
+// const router = require("express").Router();
 // module.exports = function(app) {
 // app.get("/api/workouts", (req, res) => // Calling from the api.js in the public folder.
 // {

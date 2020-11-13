@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 
 const PORT = process.env.PORT || 3000;
 
-const db = require("mongojs");
+// const db = require("mongojs");
 
 const app = express();
 
