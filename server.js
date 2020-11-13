@@ -18,11 +18,15 @@ app.use(express.static("public"));
 app.use(require("./routes/apiRoute"));
 app.use(require("./routes/htmlRoutes"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", 
-{
-  useNewUrlParser: true,
-  useFindAndModify: false
-});
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/workout',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  }
+);
 
 //port to listen to.
 app.listen(PORT, () => {

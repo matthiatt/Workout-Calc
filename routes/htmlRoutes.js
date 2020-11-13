@@ -1,6 +1,7 @@
 // showing required modules
-const path = require("path");
 const db = require("mongojs");
+const express = require("express");
+const app = express();
 
 app.get("/", (req,res) => //main / index html
 {
@@ -16,3 +17,5 @@ app.get("/stats", (req,res) => // stats html
 {
   res.sendFile(path.join(__dirname, 'public', 'stats.html'));
 });
+
+module.exports = Workout;
