@@ -6,7 +6,7 @@ const morgan = require("morgan");
 
 const PORT = process.env.PORT || 3000;
 
-const db = mongojs(databaseUrl, collections);
+// const db = mongojs(databaseUrl, collections);
 
 db.on("error", error => 
 {

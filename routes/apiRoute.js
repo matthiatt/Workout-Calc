@@ -37,7 +37,8 @@ app.post("/api/workouts", (req, res) =>
 {
     db.workout.create({
         day: new Date().setDate(new Date().getDate()) // Copy and pasted from the seed file.
-    }).then(updateDbCollecition  => {
+    }).then(updateDbCollecition  => 
+        {
         res.json(updateDbCollecition);
         console.log(updateDbCollecition);
     });
