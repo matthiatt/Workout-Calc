@@ -1,36 +1,27 @@
-// Connections needed
 const express = require("express");
-const mongoose = require("mongoose");
-// const morgan = require("morgan");
-// const mongojs = require("mongojs");
+const bodyParser = require("body-parser");
+const path = require("path");
 
-const PORT = process.env.PORT || 3000;
+require("dotenv/config"); // Requesting connection to the DB
+const connectDB = require("./config/connectDB.js");
 
-// const db = require("mongojs");
+const db = require("./models");
 
-const app = express();
+let app = express();
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-// app.use(morgan);
-app.use(express.static("public"));
-
-app.use(require("./routes/apiRoute"));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, "/public")));
 app.use(require("./routes/htmlRoutes"));
+app.use(require("./routes/middleware"));
 
-mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/workout',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false
-  }
-);
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+});
 
-//port to listen to.
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
 });
-
-// I HATE HEROKU
