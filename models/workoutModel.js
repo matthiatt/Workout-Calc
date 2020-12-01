@@ -7,9 +7,14 @@ const excerciseSchema = new Schema(
       type: Date,
       default: Date.new,
     },
-    name: [
+    exerciseArray: [
       {
         type: {
+          type: String,
+          trim: true,
+          required: "Please Enter a valid exercise category.",
+        },
+        name: {
           type: String,
           trim: true,
           required: "Please Enter a valid exercise name.",
@@ -20,19 +25,15 @@ const excerciseSchema = new Schema(
         },
         weight: {
           type: Number,
-          required: "If needed - how much iron did you pump? (in LBS).",
         },
         reps: {
           type: Number,
-          required: "How many reps did you complete of this task?",
         },
         sets: {
           type: Number,
-          required: "How many sets did you comeplete?",
         },
         distance: {
           type: Number,
-          required: "If you did cardio, then how far did you travel?",
         },
       },
     ],
@@ -45,10 +46,10 @@ const excerciseSchema = new Schema(
 );
 
 excerciseSchema.virtual("totalTime").get(function () {
-  return this.name.reduce((total, exercise) => {
+  return this.exerciseArray.reduce((total, exercise) => {
     return total + exercise.time;
   }, 0);
 });
 
-const Workout = mongoose.model("workout", excerciseSchema);
+const Workout = mongoose.model("Workout", excerciseSchema);
 module.exports = Workout;
